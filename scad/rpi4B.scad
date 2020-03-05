@@ -12,7 +12,7 @@ spHeight    = 2;    //SuPport Height
 rpi4Bbox(externalHolders = false);
 
 module rpi4Bbox(px=0, py=0, pz=0, rx=0, ry=0, rz=0, externalHolders = false){
-    translate([(px-5/2), (py+1/2),pz])
+    translate([px, py, pz])
     rotate([rx,ry,rz]){
         difference(){
             translate([0,0,-wallTk]){
