@@ -58,7 +58,16 @@ module displayMicroHDMI(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
 }//module
 
 
-
+//displayHDMI
+module displayHDMI(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
+    translate([(px-15/2),(py+5/2),pz])
+    rotate([rx,ry,rz]){
+        minkowski(){
+            yCube(szx=15, szy=5, szz=6);
+            yCyl(rb=1, rt=1, px=8/2, py=-5/2,rx=90);
+        }//minkowski
+    }//transform
+}//module
 
 //support for board
 module supportBoardRPi(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
