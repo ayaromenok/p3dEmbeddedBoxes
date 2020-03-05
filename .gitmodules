@@ -1,0 +1,3 @@
+[submodule "p3dLib"]
+	path = p3dLib
+	url = https://github.com/ayaromenok/p3dLib
