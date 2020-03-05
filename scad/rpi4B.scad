@@ -9,9 +9,9 @@ wallTk      = 1.3;    //box wall ThiKness
 fTk         = 0.7;  //Filament addjustment ThiKness
 spHeight    = 2;    //SuPport Height
 
-rpi4box(externalHolders = false);
+rpi4Bbox(externalHolders = false);
 
-module rpi4box(px=0, py=0, pz=0, rx=0, ry=0, rz=0, externalHolders = false){
+module rpi4Bbox(px=0, py=0, pz=0, rx=0, ry=0, rz=0, externalHolders = false){
     translate([(px-5/2), (py+1/2),pz])
     rotate([rx,ry,rz]){
         difference(){
@@ -74,5 +74,5 @@ module rpi4box(px=0, py=0, pz=0, rx=0, ry=0, rz=0, externalHolders = false){
         }
 
     }//transform
-}//module pri4box
+}//module pri4Bbox
 
