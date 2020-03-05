@@ -3,7 +3,7 @@ include <./components.scad>
 
 rpiLength   = 85;
 rpiWidth    = 56;
-rpiHeight   = 35;
+rpiHeight   = 7;
 rpiRadius   = 3;
 wallTk      = 1.3;    //box wall ThiKness
 fTk         = 0.7;  //Filament addjustment ThiKness
@@ -41,7 +41,7 @@ module rpi3Bbox(px=0, py=0, pz=0, rx=0, ry=0, rz=0, externalHolders = false){
 
             //connectors - front panel   
             powerUSBC(px=(3.5+7.7), pz=-rpiHeight/2+spHeight+3.5);
-            displayHDMI(px=36, pz=-rpiHeight/2+spHeight+3.5);
+            displayHDMI(px=36, pz=-rpiHeight/2+spHeight+5.5);
             
             //audio
             yCyl2(rb=4, rt=4, szz=7, px=(3.5+7.7+14.8+13.5+7.5+7.5), py=-rpiHeight/2+spHeight+4.5,rx=90);
