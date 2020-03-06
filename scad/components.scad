@@ -12,12 +12,23 @@ module sdCard(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
     }//transform
 }//module
 
-//USB-A/USB2 or 3
+//USB-A/USB2 or 3 - dual
 module usbUSBA(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
     translate([(px-5/2), (py+15.6/2),pz])
     rotate([rx,ry,rz]){
         minkowski(){
             yCube(szx=5, szy=13.6, szz=17);
+            yCyl(rb=1,rt=1, px=5/2, py=-15/2, ry=90);
+        }//minkowski
+    }//transform
+}//module
+
+//USB-A/USB2 or 3 - single
+module usbUSBASingle(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
+    translate([(px-5/2), (py+15.6/2),pz])
+    rotate([rx,ry,rz]){
+        minkowski(){
+            yCube(szx=5, szy=13.6, szz=8);
             yCyl(rb=1,rt=1, px=5/2, py=-15/2, ry=90);
         }//minkowski
     }//transform
