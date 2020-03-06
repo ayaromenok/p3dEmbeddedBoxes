@@ -2,8 +2,8 @@ include <../p3dLib/lib.scad>
 include <./components.scad>
 
 rpiLength   = 65;
-rpiWidth    = 56;
-rpiHeight   = 35;
+rpiWidth    = 58;
+rpiHeight   = 22;
 rpiRadius   = 3;
 wallTk      = 1.3;    //box wall ThiKness
 fTk         = 0.7;  //Filament addjustment ThiKness
@@ -40,14 +40,13 @@ module rpi3Bbox(px=0, py=0, pz=0, rx=0, ry=0, rz=0, externalHolders = false){
             yCyl(rb=3.3, rt=1.7, szz=wallTk, px=(3.5+58), py=(3.5+49), pz=-rpiHeight/2-wallTk/2);    
 
             //connectors - front panel   
-            powerUSBC(px=(3.5+7.7), pz=-rpiHeight/2+spHeight+3.5);
-            displayHDMI(px=36, pz=-rpiHeight/2+spHeight+5.5);
-            
+            powerUSBC(px=(3.5+7.1), pz=-rpiHeight/2+spHeight+3.5);
+            displayHDMI(px=35.4, pz=-rpiHeight/2+spHeight+5.5);            
             //audio
-            yCyl2(rb=4, rt=4, szz=7, px=(3.5+7.7+14.8+13.5+7.5+7.5), py=-rpiHeight/2+spHeight+4.5,rx=90);
+            yCyl2(rb=4, rt=4, szz=7, px=(3.5+7.7+14.8+13.5+7.5+6.9), py=-rpiHeight/2+spHeight+4.5,rx=90);
     
             //connectors - right panel
-            usbUSBASingle(px=(rpiLength+wallTk/2), py=31.45, pz=-rpiHeight/2+spHeight+9/2+2.5);
+            usbUSBASingle(px=(rpiLength+wallTk/2), py=31, pz=-rpiHeight/2+spHeight+9/2+2.5);
             
             //connectors - left panel
             sdCard(px=2,py=3.5+24.5,pz=-rpiHeight/2+1);    
@@ -67,8 +66,8 @@ module rpi3Bbox(px=0, py=0, pz=0, rx=0, ry=0, rz=0, externalHolders = false){
         if (externalHolders){
             boxConnectorM3(px=(-3.5-wallTk), py=5, pz=(-rpiHeight/2-wallTk+spHeight/2));
             boxConnectorM3(px=(-3.5-wallTk), py=(rpiWidth-5), pz=(-rpiHeight/2-wallTk+spHeight/2));
-            boxConnectorM3(px=(3.5+58), py=(-3.5-wallTk),pz=(-rpiHeight/2-wallTk+spHeight/2));
-            boxConnectorM3(px=(3.5+58), py=(rpiWidth+3.5+wallTk), pz=(-rpiHeight/2-wallTk+spHeight/2));
+            boxConnectorM3(px=(rpiLength+3.5+wallTk), py=5,pz=(-rpiHeight/2-wallTk+spHeight/2));
+            boxConnectorM3(px=(rpiLength+3.5+wallTk), py=(rpiWidth-5), pz=(-rpiHeight/2-wallTk+spHeight/2));
         }
 
     }//transform
