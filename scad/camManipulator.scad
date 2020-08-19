@@ -3,10 +3,10 @@ include <./components.scad>
 
 //camManipulator();
 
-camSegment(px=50, length=50, rx=90);
+armSegment(px=50, length=50, rx=90);
 
 
-module camSegment(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=6, length=30, mX=4){
+module armSegment(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=6, length=30, mX=4){
     _tk=thickness;
     _tk_2=thickness/2;
     _tk_x2=thickness*2;
