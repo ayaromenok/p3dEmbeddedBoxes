@@ -3,10 +3,9 @@ include <./components.scad>
 
 waveshareCM_IO(externalSupport=true);
 
-module waveshareCM_IO(px=0, py=0, pz=0, rx=0, ry=0, rz=0, externalSupport = false){
+module waveshareCM_IO(px=0, py=0, pz=0, rx=0, ry=0, rz=0, externalSupport = false, thickness=6){
     translate([px, py, pz])
-    rotate([rx,ry,rz]){
-        thickness=6;
+    rotate([rx,ry,rz]){        
         thickness_2=thickness/2;
         difference(){
             //board size
@@ -46,7 +45,7 @@ module waveshareCM_IO(px=0, py=0, pz=0, rx=0, ry=0, rz=0, externalSupport = fals
             yCyl(2.25,thickness+10,   -2.5,4.5,2);            
             
             //cam positions
-            yCyl(2.3,10,  -(164.9/2)+((101.13-86.43)/2)+(86.43+67.11)/2, (124.31/2+8),0);
+            //yCyl(2.3,10,  -(164.9/2)+((101.13-86.43)/2)+(86.43+67.11)/2, (124.31/2+8),0);
             yCyl(2.3,10,  -(164.9/2)+((101.13-86.43)/2)+86.43+25, (124.31/2+8),0);
             yCyl(2.3,10,  -(164.9/2)+((101.13-86.43)/2)+67.11-25, (124.31/2+8),0);        
             
