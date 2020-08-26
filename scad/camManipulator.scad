@@ -6,8 +6,27 @@ include <./components.scad>
 //armSegment(px=40, length=50, rx=90);
 
 //armCamHolder(ry=90);
-armCamHolder_x2(ry=90, stereoBase=128);
+armCamHolder_x2(ry=90, stereoBase=64);
+//camShim();
 
+module camShim(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=6){
+    thickness_2=thickness/2;
+    translate([px, py, pz])
+    rotate([rx,ry,rz]){
+        difference(){
+            yCube(29,21,2, 0,3,0);
+           
+           //holes 
+            yCyl(1.9,3,  10.5,9.5 );  
+            yCyl(1.9,3,  10.5,-3);  
+            yCyl(1.9,3,  -10.5,9.5);  
+            yCyl(1.9,3,  -10.5,-3.5);  
+            //central hole
+            yCube(21,21,3);
+        }//diff
+        
+    }//transform
+}//module 
 module armCamHolder(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=6, length=20, mX=4, isFullSegment=true){
     _tk=thickness;
     _tk_2=thickness/2;
@@ -18,7 +37,7 @@ module armCamHolder(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=6, length=20, 
     rotate([rx,ry,rz]){
         difference(){
             union(){
-                yCube(27,27,2, length,0,0, 0,90,0);
+                yCube(27,19,2, length,3,0, 0,90,0);
                 yCyl(_tk,_tk);                     
               
                 
@@ -30,10 +49,10 @@ module armCamHolder(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=6, length=20, 
             yCyl(_r,_tk_x2);            
             
             //cam holes (~2.5)
-            yCyl2(1.9,_tk,  10.5,10.5, length, 0,90,0 );  
-            yCyl2(1.9,_tk,  10.5,-10.5, length, 0,90,0 );  
-            yCyl2(1.9,_tk,  -10.5,10.5, length, 0,90,0 );  
-            yCyl2(1.9,_tk,  -10.5,-10.5, length, 0,90,0 );  
+            yCyl2(1.9,_tk,  10.5,9.5, length, 0,90,0 );  
+            yCyl2(1.9,_tk,  10.5,-3, length, 0,90,0 );  
+           yCyl2(1.9,_tk,  -10.5,9.5, length, 0,90,0 );  
+            yCyl2(1.9,_tk,  -10.5,-3, length, 0,90,0 );  
         }//difference
         
     }//transform
@@ -51,7 +70,8 @@ module armCamHolder_x2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=6, length=2
     rotate([rx,ry,rz]){
         difference(){
             union(){
-                yCube(_sb+27,27,2, length,0,0, 0,90,0);
+                yCube(_sb+27,19,2, length,3,0, 0,90,0);
+                yCube(_sb+27,3,4, length-3,3,0, 0,90,0);
                 yCyl(_tk,_tk);                     
               
                 
@@ -63,16 +83,16 @@ module armCamHolder_x2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=6, length=2
             yCyl(_r,_tk_x2);            
             
             //cam holes (~2.5)
-            yCyl2(1.9,_tk,  _sb_2+10.5,10.5, length, 0,90,0 );  
-            yCyl2(1.9,_tk,  _sb_2+10.5,-10.5, length, 0,90,0 );  
-            yCyl2(1.9,_tk,  _sb_2-10.5,10.5, length, 0,90,0 );  
-            yCyl2(1.9,_tk,  _sb_2-10.5,-10.5, length, 0,90,0 );  
+            yCyl2(1.9,_tk,  _sb_2+10.5,9.5, length, 0,90,0 );  
+            yCyl2(1.9,_tk,  _sb_2+10.5,-3, length, 0,90,0 );  
+            yCyl2(1.9,_tk,  _sb_2-10.5,9.5, length, 0,90,0 );  
+            yCyl2(1.9,_tk,  _sb_2-10.5,-3, length, 0,90,0 );  
             
             
-            yCyl2(1.9,_tk,  -_sb_2+10.5,10.5, length, 0,90,0 );  
-            yCyl2(1.9,_tk,  -_sb_2+10.5,-10.5, length, 0,90,0 );  
-            yCyl2(1.9,_tk,  -_sb_2-10.5,10.5, length, 0,90,0 );  
-            yCyl2(1.9,_tk,  -_sb_2-10.5,-10.5, length, 0,90,0 );  
+            yCyl2(1.9,_tk,  -_sb_2+10.5,9.5, length, 0,90,0 );  
+            yCyl2(1.9,_tk,  -_sb_2+10.5,-3, length, 0,90,0 );  
+            yCyl2(1.9,_tk,  -_sb_2-10.5,9.5, length, 0,90,0 );  
+            yCyl2(1.9,_tk,  -_sb_2-10.5,-3, length, 0,90,0 );  
         }//difference
         
     }//transform
@@ -117,7 +137,7 @@ module camManipulatorBasement(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=6){
     rotate([rx,ry,rz]){
         difference(){
             union(){
-                yCyl(10,thickness,  0,0,0);                
+                yCyl(8.5,thickness,  0,0,0);                
                 armSegment(length=20, px=10, pz=-thickness/2,ry=-90,rx=90, isFullSegment=false);
             }//union
             //holes
