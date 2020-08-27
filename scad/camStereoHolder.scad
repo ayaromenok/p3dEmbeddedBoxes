@@ -17,8 +17,7 @@ module armCamHolder_MCAM400_x2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=6, 
     rotate([rx,ry,rz]){
         difference(){
             union(){
-                yCube(_sb+38,38,2, length,0,0, 0,90,0);
-                //yCube(_sb+38,3,4, length-3,3,0, 0,90,0);
+                yCube(_sb+39,39,2, length,0,0, 0,90,0);                
                 yCyl(_tk,_tk);                     
               
                 
@@ -41,8 +40,11 @@ module armCamHolder_MCAM400_x2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=6, 
             yCyl2(1.5,_tk,  -_sb_2-16.5,-16.5, length, 0,90,0 );  
             
             //cams
-            yCyl2(7.5,_tk,  _sb_2,0, length, 0,90,0 );  
-            yCyl2(7.5,_tk,  -_sb_2,0, length, 0,90,0 );  
+            //yCyl2(7.5,_tk,  _sb_2,0, length, 0,90,0 );  
+            //yCyl2(7.5,_tk,  -_sb_2,0, length, 0,90,0 );
+            yCube(8,24,24,     length,0, _sb_2);
+            yCube(8,24,24,     length,0, -_sb_2);
+            
         }//difference
         
     }//transform
