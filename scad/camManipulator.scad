@@ -3,10 +3,10 @@ include <./components.scad>
 
 
 //camManipulatorBasement();
-//armSegment(px=40, length=50, rx=90);
+armSegment(px=0, length=30, rx=90);
 
 //armCamHolder(ry=90);
-armCamHolder_x2(ry=90, stereoBase=64);
+//armCamHolder_x2(ry=90, stereoBase=64);
 //camShim();
 
 module camShim(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=6){
