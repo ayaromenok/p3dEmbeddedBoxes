@@ -24,11 +24,12 @@ module usbUSBA(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
 }//module
 
 //USB-A/USB2 or 3 - single
-module usbUSBASingle(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
+module usbUSBASingle(depth=5, px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1){
     translate([(px-5/2), (py+15.6/2),pz])
-    rotate([rx,ry,rz]){
+    rotate([rx,ry,rz])
+    scale([sx,sy,sz]){
         minkowski(){
-            yCube(szx=5, szy=13.6, szz=8);
+            yCube(szx=depth, szy=14.2, szz=8);
             yCyl(rb=1,rt=1, px=5/2, py=-15/2, ry=90);
         }//minkowski
     }//transform
@@ -47,9 +48,10 @@ module ethRJ45(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
 
 
 //power/USB-C
-module powerUSBC(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
+module powerUSBC(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1){
     translate([(px-8/2), (py+5/2),pz])
-    rotate([rx,ry,rz]){
+    rotate([rx,ry,rz])
+    scale([sx,sy,sz]){
         minkowski(){
             yCube(szx=8, szy=5,szz=3);
             yCyl(rb=1,rt=1, px=8/2, py=-5/2,rx=90);
@@ -70,9 +72,10 @@ module displayMicroHDMI(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
 
 
 //displayHDMI
-module displayHDMI(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
+module displayHDMI(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1){
     translate([(px-15/2),(py+5/2),pz])
-    rotate([rx,ry,rz]){
+    rotate([rx,ry,rz])
+    scale([sx,sy,sz]){
         minkowski(){
             yCube(szx=15, szy=5, szz=6);
             yCyl(rb=1, rt=1, px=8/2, py=-5/2,rx=90);
