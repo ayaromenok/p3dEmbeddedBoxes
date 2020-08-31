@@ -9,8 +9,8 @@ wallTk      = 2.5;    //box wall ThiKness
 fTk         = 0.7;  //Filament addjustment ThiKness
 spHeight    = 2;    //SuPport Height
 
-//rpi3Bbox(secBot=true,externalHolders = true);
-rpi3Bbox(secBot=false, rx=180);
+rpi3Bbox(secBot=true,externalHolders = true);
+rpi3Bbox(secBot=false, rx=180, py=-20);
 //       cutSection(10,0,5,   0,0,0,   20,3,7); 
 //        addSection(10,5,5,   0,0,0,   20,3,7); 
 //addSection();
@@ -69,7 +69,7 @@ module rpi3Bbox(px=0, py=0, pz=0, rx=0, ry=0, rz=0, secBot=true, externalHolders
                 cutSection(-wallTk/2-fTk,rpiWidth/2,-9,   0,0,90,   30,3,18); 
                 cutSection(rpiLength+wallTk/2+fTk,rpiWidth/2,-5,   0,0,90,   30,3,14); 
                 
-                yCube(50,20,rpiHeight, rpiLength/2, rpiWidth,10);
+                yCube(60,20,rpiHeight, rpiLength/2, rpiWidth,5);
             } else {
                 cutSectionTop(32,-wallTk/2-fTk,-5,   0,0,0,   60,3,14); 
                 cutSectionTop(-wallTk/2-fTk,rpiWidth/2,-9,   0,0,90,   30,3,18); 
@@ -78,7 +78,7 @@ module rpi3Bbox(px=0, py=0, pz=0, rx=0, ry=0, rz=0, secBot=true, externalHolders
                 yCube(rpiLength*2,rpiWidth*2,rpiHeight, rpiLength/2, rpiWidth/2,-15.5);
                 yCube(rpiLength*2,wallTk*2,rpiHeight, rpiLength/2, rpiWidth+wallTk/2,-1.8);
                 
-                yCube(50,20,rpiHeight, rpiLength/2, rpiWidth,10);
+                yCube(60,20,rpiHeight, rpiLength/2, rpiWidth,10);
                 yCube(20,20,rpiHeight, 27, 35,5);
                 yCube(20,20,rpiHeight, 0, rpiWidth/2,12);
                 yCube(10,22,rpiHeight, 45, 10,10);
