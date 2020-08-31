@@ -82,6 +82,10 @@ module rpi3Bbox(px=0, py=0, pz=0, rx=0, ry=0, rz=0, secBot=true, externalHolders
                 yCube(20,20,rpiHeight, 27, 35,5);
                 yCube(20,20,rpiHeight, 0, rpiWidth/2,12);
                 yCube(10,22,rpiHeight, 45, 10,10);
+                
+                //cam holder
+               yCyl(2.3,10,  5,5,rpiHeight-10);  
+               yCyl(2.3,10,  rpiLength-3,5,rpiHeight-10);  
             }//if/else secBot
         }//diff
         
