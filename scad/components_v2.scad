@@ -1,7 +1,6 @@
-include <../p3dLib/lib.scad>
+include <../lib/lib.scad>
 
 testComponents_v2();
-
 
 module testComponents_v2(){
     echo ("g_isProduction need to be specified(and set to `true`) in main file");
@@ -22,9 +21,7 @@ module testComponents_v2(){
         displayHDMI_v2(0,-120,0,0,0,0);
         displayHDMI_v2(0,-120,0,0,0,90);
         audio3_5mm_v2(0,-140,0,0,0,0);
-        audio3_5mm_v2(0,-140,0,0,0,90);
-        //supportBoardRPi_v2();
-        //boxConnectorM3_v2();
+        audio3_5mm_v2(0,-140,0,0,0,90);        
     }
 }
 
@@ -176,35 +173,5 @@ module audio3_5mm_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1, depth
         }//union
     }//transform
 }//module
-//support for board
-module supportBoardRPi_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
-    translate([(px),(py),pz])
-    rotate([rx,ry,rz]){
-        difference(){    
-            yCyl(rb=3, rt=3, szz=spHeight, px=3.5, py=3.5, pz=(-rpiHeight/2+spHeight/2));
-            yCyl(rb=1.7, rt=1.7, szz=spHeight*2, px=3.5, py=3.5, pz=(-rpiHeight/2+spHeight/2));
-        }//diff
-        difference(){    
-            yCyl(rb=3, rt=3, szz=spHeight, px=3.5, py=(3.5+49), pz=(-rpiHeight/2+spHeight/2));
-            yCyl(rb=1.7, rt=1.7, szz=spHeight*2, px=3.5, py=(3.5+49), pz=(-rpiHeight/2+spHeight/2));
-        }//diff
-        difference(){    
-            yCyl(rb=3, rt=3, szz=spHeight, px=(3.5+58), py=3.5, pz=(-rpiHeight/2+spHeight/2));
-            yCyl(rb=1.7, rt=1.7, szz=spHeight*2, px=(3.5+58), py=3.5, pz=(-rpiHeight/2+spHeight/2));
-        }//diff    
-        difference(){    
-            yCyl(rb=3, rt=3, szz=spHeight, px=(3.5+58), py=(3.5+49), pz=(-rpiHeight/2+spHeight/2));
-            yCyl(rb=1.7, rt=1.7, szz=spHeight*2, px=(3.5+58), py=(3.5+49), pz=(-rpiHeight/2+spHeight/2));
-        }//diff    
-    }//transform
-}//module
 
-module boxConnectorM3_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
-    translate([(px),(py),pz])
-    rotate([rx,ry,rz]){
-        difference(){    
-            yCyl(rb=4.5, rt=4.5, szz=spHeight);
-            yCyl(rb=1.7, rt=1.7, szz=spHeight*2);
-        }//diff
-    }//transform
-}//module
+
