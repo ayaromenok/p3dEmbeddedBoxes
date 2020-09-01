@@ -125,7 +125,7 @@ module displayMicroHDMI_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1,
     translate([px,py,pz])
     rotate([rx,ry,rz])
     scale([sx,sy,sz]){
-        translate([0,(6/2),0])
+        translate([0,(6/2),2.5])
         union(){
             minkowski(){
                 yCube(depth, 6, 3);
@@ -146,7 +146,7 @@ module displayHDMI_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1, dept
     translate([px,py,pz])
     rotate([rx,ry,rz])
     scale([sx,sy,sz]){
-        translate([0,(15/2),0])
+        translate([0,(15/2),4])
         union(){
             minkowski(){
                 yCube(depth, 15, 6);
@@ -166,7 +166,7 @@ module audio3_5mm_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1, depth
     translate([px, py,pz])
     rotate([rx,ry,rz])    
     scale([sx,sy,sz]){
-        translate([0, 0,3])
+        translate([0, 0,5])
         union(){            
             yCyl(3, depth, ry=90);            
             yCyl(5, depth, 1,ry=90);            
