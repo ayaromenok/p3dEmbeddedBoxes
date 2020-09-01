@@ -42,9 +42,12 @@ module rpi3A(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isTop=true, isExtHol
             rpi40PinHeader_v2(0,(49/2+_t+3+_shift),5);
             //connectors - top            
             rpi40PinHeader_v2(0,(49/2),_h-_shift);
-            camerasBasement_v2(58/2,(-56/2+11.5),_h);
-            camerasBasement_v2(-58/2,(-56/2+11.5),_h);
-            //heater otput
+            cameraBasement_v2(58/2,(-56/2+11.5),_h);
+            cameraBasement_v2(-58/2,(-56/2+11.5),_h);
+            cameraFFC_v2((-65/2+45),(-56/2+11.5),_h);
+                // display in fact
+            cameraFFC_v2((-65/2+4.5),0,_h);
+            //heater output
             yCube(58/2,49/2,_h,-15,10,_h);    
             //dev
             //yCube(_l,_w,_h,0,0,_h);    

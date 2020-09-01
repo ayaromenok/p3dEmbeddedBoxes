@@ -9,7 +9,8 @@ module testBoxParts_v2(){
     if (!g_isProduction){
         basementRPi_v2();
         rpi40PinHeader_v2();
-        camerasBasement_v2(0,-10);
+        cameraBasement_v2(0,-10);
+        cameraFFC_v2(0,-30);
     }//if !g_isProduction
 }//module
 
@@ -49,14 +50,22 @@ module rpi40PinHeader_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
 }//rpi40PinHeader_v2
 
 
-//40 pin header
-module camerasBasement_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
+//camera basement
+module cameraBasement_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
     translate([(px),(py),pz])
     rotate([rx,ry,rz]){
         yCyl(2.3, 10);
     }//transform
-}//rpi40PinHeader_v2
+}//camerasBasement_v2
 
+
+//camera FFC
+module cameraFFC_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
+    translate([(px),(py),pz])
+    rotate([rx,ry,rz]){
+        yCube(6,20,10);
+    }//transform
+}//cameraFFC_v2
 
 module boxConnectorM3_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
     translate([(px),(py),pz])
