@@ -14,6 +14,7 @@ module testBoxParts_v2(){
         cutSectionBot(0,-50);
         cutSectionTop(0,-60);
         addSection(0,-70);
+        boxHolderRPiAWider_v2(); //RPi 3A only
     }//if !g_isProduction
 }//module
 
@@ -123,6 +124,31 @@ module cutSectionTop(px=0, py=0, pz=0, rx=0, ry=0, rz=0, length=10, width=2, hei
     }//transform
 }//module
 
+//support for board
+module boxHolderRPiAWider_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=3){
+    _shiftH=(65+thickness*2+3*2)/2;
+    translate([(px),(py),pz])
+    rotate([rx,ry,rz]){
+        translate([0,0,1]){
+            difference(){
+                yCyl(4,2,_shiftH,49/2);
+                yCyl(1.7,3,_shiftH,49/2);
+            }//dif
+            difference(){
+                yCyl(4,2,_shiftH,-49/2);
+                yCyl(1.7,3,_shiftH,-49/2);
+            }//dif
+            difference(){
+                yCyl(4,2,-_shiftH,49/2);
+                yCyl(1.7,3,-_shiftH,49/2);
+            }//dif
+            difference(){
+                yCyl(4,2,-_shiftH,-49/2);
+                yCyl(1.7,3,-_shiftH,-49/2);
+            }//dif
+        }//translate
+    }//transform
+}//module boxHolderRPiWider_v2
 
 // not ported - need to evaluate
 module boxConnectorM3_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0){

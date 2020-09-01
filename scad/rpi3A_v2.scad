@@ -4,10 +4,10 @@ g_isProduction = true; //true to avoid displaying test components
 
 rpi3A();
 
-module rpi3A(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isTop=true, isExtHolders = false, tickness=3){
+module rpi3A(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isTop=true, isExtHolders = false, thickness=3){
     _shift=0.4; //board quality+nozzle diameter    
     _r = 2;
-    _t = tickness;
+    _t = thickness;
     _R = _r+_t;
     _l = 65-_r*2+_shift*2;
     _w = 56-_r*2+_shift*2+0.6;//0.6 - magick number - re-measure on real detail
@@ -52,10 +52,8 @@ module rpi3A(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isTop=true, isExtHol
             //dev
             //yCube(_l,_w,_h,0,0,_h);    
         }//diff
-        basementRPi_v2();        
-        
-        
-        
+        basementRPi_v2();
+        boxHolderRPiAWider_v2(0,0,-thickness);
     }//translate    
 }//module
 
