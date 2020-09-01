@@ -3,15 +3,38 @@ include <./boxParts_v2.scad>
 
 //include <./components.scad>
 g_isProduction = true; //true to avoid displaying test components
+rpi3ABot(0,-40);
+rpi3ATop(0,40,22,180);
 
-difference(){
-    rpi3A();
-    yCube(75,66,22,0,0,17);
-}
-//rpi3Bbox(px=-65/2,py=-29,pz=22/2,secBot=true,externalHolders = true);
-//rpi3Bbox(secBot=false, rx=180, py=-20);
+module rpi3ABot(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isExtHolders = false, thickness=3){
+    translate([px, py, pz])
+    rotate([rx,ry,rz]){
+    difference(){
+            rpi3A();
+            yCube(75,66,(22+thickness*2+0.4*2),0,0,33.6);
+            cutSectionBot(-1.5,-(56/2+thickness/2+0.7),6,           length=58, width=thickness, height=13);
+            cutSectionBot(0,(56/2+thickness/2+0.7),6,               length=58, width=thickness, height=13);
+            cutSectionBot((65/2+thickness/2+0.4),(-56/2+31.45),6,   0,0,90,length=30, width=thickness, height=13);
+            cutSectionBot(-(65/2+thickness/2+0.4),0,6,              0,0,90,length=30, width=thickness, height=13);
+        }//diff        
+    }//translate
+}//module rpi3ABot
 
-module rpi3A(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isTop=true, isExtHolders = false, thickness=3){
+module rpi3ATop(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isExtHolders = false, thickness=3){
+    translate([px, py, pz])
+    rotate([rx,ry,rz]){
+        difference(){            
+            rpi3A();
+            cutSectionTop(-1.5,-(56/2+thickness/2+0.7),6,           length=58, width=thickness, height=13);
+            cutSectionTop(0,(56/2+thickness/2+0.7),6,               length=58, width=thickness, height=13);
+            cutSectionTop((65/2+thickness/2+0.4),(-56/2+31.45),6,   0,0,90,length=30, width=thickness, height=13);
+            cutSectionTop(-(65/2+thickness/2+0.4),0,6,              0,0,90, length=30, width=thickness, height=13);
+            yCube(95,86,(22+thickness*2+0.4*2),0,0,-7.95);
+        }//diff        
+    }//translate
+}//module rpi3ATop
+
+module rpi3A(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isExtHolders = false, thickness=3){
     _shift=0.4; //board quality+nozzle diameter    
     _r = 2;
     _t = thickness;
