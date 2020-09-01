@@ -2,11 +2,14 @@ include <../lib/lib.scad>
 
 testBoxParts_v2();
 
+
 module testBoxParts_v2(){
     echo ("g_isProduction need to be specified(and set to `true`) in main file");
     echo ("`unknown variable` message below is OK for call from components_v2 file");
     if (!g_isProduction){
         basementRPi_v2();
+        rpi40PinHeader_v2();
+        camerasBasement_v2(0,-10);
     }//if !g_isProduction
 }//module
 
@@ -35,6 +38,24 @@ module basementRPi_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
         }//translate
     }//transform
 }//module basementRPi_v2
+
+//40 pin header
+module rpi40PinHeader_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
+    translate([(px),(py),pz])
+    rotate([rx,ry,rz]){
+        translate([0,0,5])
+        yCube(50,6,10);
+    }//transform
+}//rpi40PinHeader_v2
+
+
+//40 pin header
+module camerasBasement_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
+    translate([(px),(py),pz])
+    rotate([rx,ry,rz]){
+        yCyl(2.3, 10);
+    }//transform
+}//rpi40PinHeader_v2
 
 
 module boxConnectorM3_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
