@@ -1,8 +1,15 @@
 include <./components_v2.scad>
 include <./boxParts_v2.scad>
+
+//include <./components.scad>
 g_isProduction = true; //true to avoid displaying test components
 
-rpi3A();
+difference(){
+    rpi3A();
+    yCube(75,66,22,0,0,17);
+}
+//rpi3Bbox(px=-65/2,py=-29,pz=22/2,secBot=true,externalHolders = true);
+//rpi3Bbox(secBot=false, rx=180, py=-20);
 
 module rpi3A(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isTop=true, isExtHolders = false, thickness=3){
     _shift=0.4; //board quality+nozzle diameter    
@@ -36,10 +43,13 @@ module rpi3A(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isTop=true, isExtHol
         
             //connectors - right
             usbUSBASingle_v2((65/2),(-56/2+31.45),3);
+            
             //connectors - left
             sdCard_v2(-(65/2),0,(-3+3),0,0,180);
+            
             //connectors - back            
             rpi40PinHeader_v2(0,(49/2+_t+3+_shift),5);
+            
             //connectors - top            
             rpi40PinHeader_v2(0,(49/2),_h-_shift);
             cameraBasement_v2(58/2,(-56/2+11.5),_h);
@@ -47,12 +57,17 @@ module rpi3A(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isTop=true, isExtHol
             cameraFFC_v2((-65/2+45),(-56/2+11.5),_h);
                 // display in fact
             cameraFFC_v2((-65/2+4.5),0,_h);
-            //heater output
+                //heater output
             yCube(58/2,49/2,_h,-15,10,_h);    
+            
+            //connectors - bottom
+            basementRPiCut_v2(0,0,-thickness);
+            
             //dev
             //yCube(_l,_w,_h,0,0,_h);    
         }//diff
         basementRPi_v2();
+        
         boxHolderRPiAWider_v2(0,0,-thickness);
     }//translate    
 }//module

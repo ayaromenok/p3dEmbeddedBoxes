@@ -8,6 +8,7 @@ module testBoxParts_v2(){
     echo ("`unknown variable` message below is OK for call from components_v2 file");
     if (!g_isProduction){
         basementRPi_v2();
+        basementRPiCut_v2(0,40);
         rpi40PinHeader_v2();
         cameraBasement_v2(0,-10);
         cameraFFC_v2(0,-30);
@@ -44,6 +45,23 @@ module basementRPi_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
     }//transform
 }//module basementRPi_v2
 
+//support for board
+module basementRPiCut_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
+    translate([(px),(py),pz])
+    rotate([rx,ry,rz]){
+        translate([0,0,1]){
+                yCyl(4,2,58/2,49/2);
+                yCyl(1.7,13,58/2,49/2,7);
+                yCyl(4,2,58/2,-49/2);
+                yCyl(1.7,13,58/2,-49/2,7);
+                yCyl(4,2,-58/2,49/2);
+                yCyl(1.7,13,-58/2,49/2,7);
+                yCyl(4,2,-58/2,-49/2);
+                yCyl(1.7,13,-58/2,-49/2,7);
+            
+        }//translate
+    }//transform
+}//module basementRPiCut_v2
 //40 pin header
 module rpi40PinHeader_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
     translate([(px),(py),pz])
