@@ -1,5 +1,5 @@
 include <./components_v2.scad>
-
+include <./boxParts_v2.scad>
 g_isProduction = true; //true to avoid displaying test components
 
 rpi3A();
@@ -30,18 +30,18 @@ module rpi3A(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isTop=true, isExtHol
                 yCyl(_r,1, _l_2,_w_2);
             }//mink 
             //connectors
-            powerUSBC_v2((-_l_2+10.6),-56/2,0,0,0,-90);
-            displayHDMI_v2((-_l_2+32),-56/2,0,0,0,-90);
-            audio3_5mm_v2((_l_2-11.5),-56/2,0,0,0,-90);
+            powerUSBC_v2((-_l_2+10.6),-56/2,3,0,0,-90);
+            displayHDMI_v2((-_l_2+32),-56/2,3.5,0,0,-90);
+            audio3_5mm_v2((_l_2-11.5),-56/2,3.5,0,0,-90);
         
-            usbUSBASingle_v2((65/2),(-56/2+31.45));
+            usbUSBASingle_v2((65/2),(-56/2+31.45),3);
         
-            sdCard_v2(-(65/2),0,-3,0,0,180);
+            sdCard_v2(-(65/2),0,(-3+3),0,0,180);
             
             //dev
             yCube(_l,_w,_h,0,0,_h);    
         }//diff
-        
+        basementRPi_v2();        
         
     }//translate    
 }//module
