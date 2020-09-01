@@ -6,13 +6,20 @@ module testComponents_v2(){
     echo ("g_isProduction need to be specified(and set to `true`) in main file");
     echo ("`unknown variable` message below is OK for call from components_v2 file");
     if (!g_isProduction){
-        sdCard_v2(py=20);
-        usbUSBADual_v2();
-        usbUSBASingle_v2(py=-20);
-        ethRJ45_v2(py=-40);
-        powerUSBC_v2(py=-60);
-        displayMicroHDMI_v2(py=-80);
-        displayHDMI_v2(py=-100);
+        sdCard_v2(0,0,0,0,0,0);
+        sdCard_v2(0,0,0,0,0,90);
+        usbUSBADual_v2(0,-20,0);        
+        usbUSBADual_v2(0,-20,0,0,0,90);        
+        usbUSBASingle_v2(0,-40,0,0,0,0);
+        usbUSBASingle_v2(0,-40,0,0,0,90);
+        ethRJ45_v2(0,-60,0,0,0,0);
+        ethRJ45_v2(0,-60,0,0,0,90);
+        powerUSBC_v2(0,-80,0,0,0,0);        
+        powerUSBC_v2(0,-80,0,0,0,90);  
+        displayMicroHDMI_v2(0,-100,0,0,0,0);
+        displayMicroHDMI_v2(0,-100,0,0,0,90);
+        displayHDMI_v2(0,-120,0,0,0,0);
+        displayHDMI_v2(0,-120,0,0,0,90);
         //supportBoardRPi_v2();
         //boxConnectorM3_v2();
     }
@@ -20,9 +27,10 @@ module testComponents_v2(){
 
 //sdCard
 module sdCard_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1, depth=5){
-    translate([px+depth/2, (py+1/2),(pz+5/2)])
+    translate([px,py,pz])
     rotate([rx,ry,rz])    
     scale([sx,sy,sz]){
+        translate([depth/2, 1/2, 5/2])
         minkowski(){
             yCube(depth,16,4);            
             ySphere(r=1);
@@ -32,9 +40,10 @@ module sdCard_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1, depth=5){
 
 //USB-A/USB2 or 3 - dual
 module usbUSBADual_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1, depth=5){
-    translate([(px), (py+15.6/2),(pz+18/2)])
+    translate([px, py,pz])
     rotate([rx,ry,rz])    
     scale([sx,sy,sz]){
+        translate([0, 15.6/2,(pz+18/2)])
         union(){
             minkowski(){
                 yCube(szx=depth, szy=13.6, szz=17);
@@ -51,9 +60,10 @@ module usbUSBADual_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1, dept
 
 //USB-A/USB2 or 3 - single
 module usbUSBASingle_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1, depth=5){
-    translate([(px), (py+15.6/2),(pz+9/2)])
+    translate([px,py,pz])
     rotate([rx,ry,rz])
     scale([sx,sy,sz]){
+        translate([0, (15.6/2),(9/2)])
         union(){
             minkowski(){
                 yCube(szx=depth, szy=14.2, szz=8);
@@ -70,9 +80,10 @@ module usbUSBASingle_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1, de
 
 //RJ-45/Ethernet
 module ethRJ45_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, ry=0, rz=0, sx=1, sy=1, sz=1, depth=5){
-    translate([px, (py+17/2),pz+16/2])
+    translate([px,py,pz])
     rotate([rx,ry,rz])
     scale([sx,sy,sz]){
+        translate([0, (17/2),(16/2)])
         union(){
             minkowski(){            
                 yCube(szx=5, szy=15, szz=15);
@@ -89,10 +100,12 @@ module ethRJ45_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, ry=0, rz=0, sx=1, sy=1, sz
 
 
 //power/USB-C
-module powerUSBC_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1, depth=5){
-    translate([(px), (py+depth/2),pz])
+module powerUSBC_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1, depth=5){    
+    translate([px,py,pz])
     rotate([rx,ry,rz])
-    scale([sx,sy,sz]){
+    scale([sx,sy,sz])
+    {
+        translate([0,(8/2),3])
         union(){
             minkowski(){
                 yCube(depth,8,3);
@@ -109,9 +122,10 @@ module powerUSBC_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1, depth=
 
 //display/micro-HDMI
 module displayMicroHDMI_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1, depth=5){
-    translate([(px),(py+depth/2),pz])
+    translate([px,py,pz])
     rotate([rx,ry,rz])
     scale([sx,sy,sz]){
+        translate([0,(6/2),0])
         union(){
             minkowski(){
                 yCube(depth, 6, 3);
@@ -129,9 +143,10 @@ module displayMicroHDMI_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1,
 
 //displayHDMI
 module displayHDMI_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1, depth=5){
-    translate([(px),(py+depth/2),pz])
+    translate([px,py,pz])
     rotate([rx,ry,rz])
     scale([sx,sy,sz]){
+        translate([0,(15/2),0])
         union(){
             minkowski(){
                 yCube(depth, 15, 6);
