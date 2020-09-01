@@ -11,6 +11,9 @@ module testBoxParts_v2(){
         rpi40PinHeader_v2();
         cameraBasement_v2(0,-10);
         cameraFFC_v2(0,-30);
+        cutSectionBot(0,-50);
+        cutSectionTop(0,-60);
+        addSection(0,-70);
     }//if !g_isProduction
 }//module
 
@@ -67,6 +70,61 @@ module cameraFFC_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
     }//transform
 }//cameraFFC_v2
 
+
+
+module cutSectionBot(px=0, py=0, pz=0, rx=0, ry=0, rz=0, length=10, width=2, height=10, sht=0.2){
+    l_2=length/2;
+    w_2=width/2;
+    w_4=width/4;
+    h_2=height/2;
+    translate([px, py, pz])
+    rotate([rx,ry,rz]){
+        union(){
+            yPoly(p=[[l_2+sht,0],[(l_2-w_2),w_2+sht],[-(l_2-w_2),w_2+sht],[-l_2-sht,0],[-(l_2-w_2),-w_2-sht],[(l_2-w_2),-w_2-sht]],szz=height+sht);        
+            ySphere(w_2+sht,l_2-w_4,0,h_2);
+            ySphere(w_2+sht,-l_2+w_4,0,h_2);        
+        }//union
+    }//transform
+}//module
+
+module addSection(px=0, py=0, pz=0, rx=0, ry=0, rz=0, length=10, width=2, height=10, sht=0.2){
+    l_2=length/2;
+    w_2=width/2;
+    w_4=width/4;
+    h_2=height/2;
+    translate([px, py, pz+sht*2])
+    rotate([rx,ry,rz]){
+        union(){
+            yPoly(p=[[l_2-sht,0],[(l_2-w_2),w_2-sht],[-(l_2-w_2),w_2-sht],[-l_2+sht,0],[-(l_2-w_2),-w_2+sht],[(l_2-w_2),-w_2+sht]],szz=height-sht);
+            ySphere(w_2-sht,l_2-w_4,0,h_2);
+            ySphere(w_2-sht,-l_2+w_4,0,h_2);
+        }//union
+    }//transform
+}//module
+
+module cutSectionTop(px=0, py=0, pz=0, rx=0, ry=0, rz=0, length=10, width=2, height=10, sht=0.2, coefLenght=5, coefWidth=2){
+    l_2=length/2;
+    w_2=width/2;
+    w_4=width/4;
+    h_2=height/2;
+    translate([px, py, pz+sht*2])
+    rotate([rx,ry,rz]){
+        difference(){
+            yCube(length*coefLenght, width*coefWidth, (height-sht), pz=(height-sht)/2);
+            
+            union(){
+                yPoly(p=[[l_2-sht,0],[(l_2-w_2),w_2-sht],[-(l_2-w_2),w_2-sht],[-l_2+sht,0],[-(l_2-w_2),-w_2+sht],[(l_2-w_2),-w_2+sht]],szz=height-sht);
+                ySphere(w_2-sht,l_2-w_4,0,h_2);
+                ySphere(w_2-sht,-l_2+w_4,0,h_2);
+            }//union            
+            yCube((l_2-w_2)*2,width*3,height-sht, pz=(height-sht)/2);
+        }//diff
+        
+    }//transform
+}//module
+
+
+// not ported - need to evaluate
 module boxConnectorM3_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
     translate([(px),(py),pz])
     rotate([rx,ry,rz]){
@@ -76,3 +134,5 @@ module boxConnectorM3_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
         }//diff
     }//transform
 }//module
+
+
