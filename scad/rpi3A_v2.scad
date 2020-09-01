@@ -29,10 +29,19 @@ module rpi3A(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isTop=true, isExtHol
                 yCube(_l,_w,_h-1);
                 yCyl(_r,1, _l_2,_w_2);
             }//mink 
+            //connectors
+            powerUSBC_v2((-_l_2+10.6),-56/2,0,0,0,-90);
+            displayHDMI_v2((-_l_2+32),-56/2,0,0,0,-90);
+            audio3_5mm_v2((_l_2-11.5),-56/2,0,0,0,-90);
+        
+            usbUSBASingle_v2((65/2),(-56/2+31.45));
+        
+            sdCard_v2(-(65/2),0,-3,0,0,180);
+            
             //dev
             yCube(_l,_w,_h,0,0,_h);    
         }//diff
-        powerUSBC_v2(0,0,0,0,0,90);
+        
         
     }//translate    
 }//module
