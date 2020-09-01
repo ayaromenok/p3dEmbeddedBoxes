@@ -3,9 +3,9 @@ include <./boxParts_v2.scad>
 
 //include <./components.scad>
 g_isProduction = true; //true to avoid displaying test components
-//rpi3ABot(0,-40);
-//rpi3ATop(0,40,22,180);
-rpi3A();
+rpi3ABot(0,-40);
+rpi3ATop(0,40,22,180);
+//rpi3A();
 
 module rpi3ABot(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isExtHolders = false, thickness=3){
     translate([px, py, pz])
@@ -67,11 +67,14 @@ module rpi3A(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isExtHolders = false
         
             //connectors - right
             usbUSBASingle_v2((65/2+0.2),(-56/2+31.45),3);
-            
+            heatHoleV((65/2),22,(3),     0,0,0);
+            heatHoleV((65/2),-22,(3),     0,0,0);
             //connectors - left
             sdCard_v2(-(65/2),0,(-3+3),     0,0,180);
             sdCard_v2(-(65/2),0,-3,         0,0,180);//extend to bottom
             
+            heatHoleV(-(65/2),22,(3),     0,0,180);
+            heatHoleV(-(65/2),-22,(3),     0,0,180);
             //connectors - back            
             rpi40PinHeader_v2(0,(49/2+_t+3+_shift),6);
             rpi40PinHeader_v2(0,(49/2+_t+3+_shift),16);
@@ -85,6 +88,7 @@ module rpi3A(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isExtHolders = false
             cameraFFC_v2((-65/2+4.5),0,_h);
                 //heater output
             yCube(58/2,48/2,_h,-15,8,_h);    
+            fan40mmHoles(-14,8,_h);
             
             //connectors - bottom
             basementRPiCut_v2(0,0,-thickness);

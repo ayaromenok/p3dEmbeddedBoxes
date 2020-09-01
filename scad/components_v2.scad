@@ -188,3 +188,16 @@ module heatHoleV(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1, depth=5, 
             }//minkowski                    
     }//transform
 }//module
+
+//USB-A/USB2 or 3 - single
+module fan40mmHoles(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1){
+    translate([px,py,pz])
+    rotate([rx,ry,rz])
+    scale([sx,sy,sz]){
+        
+        yCyl(1.2,10, 16,16,5);
+        yCyl(1.2,10, 16,-16,5);
+        yCyl(1.2,10, -16,16,5);
+        yCyl(1.2,10, -16,-16,5);
+    }//transform
+}//module
