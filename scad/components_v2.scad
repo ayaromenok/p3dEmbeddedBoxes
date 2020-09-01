@@ -22,6 +22,8 @@ module testComponents_v2(){
         displayHDMI_v2(0,-120,0,0,0,90);
         audio3_5mm_v2(0,-140,0,0,0,0);
         audio3_5mm_v2(0,-140,0,0,0,90);        
+        heatHoleV(0,-160,0,0,0,0);
+        heatHoleV(0,-160,0,0,0,90);
     }
 }
 
@@ -169,9 +171,20 @@ module audio3_5mm_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1, depth
         translate([0, 0,5])
         union(){            
             yCyl(3, depth, ry=90);            
-            yCyl(5, depth, 1,ry=90);            
+            yCyl(6, depth, 1,ry=90);            
         }//union
     }//transform
 }//module
 
-
+//USB-A/USB2 or 3 - single
+module heatHoleV(px=0, py=0, pz=0, rx=0, ry=0, rz=0, sx=1, sy=1, sz=1, depth=5, height=10){
+    translate([px,py,pz])
+    rotate([rx,ry,rz])
+    scale([sx,sy,sz]){
+        translate([0, (4/2),((height+1)/2)])        
+            minkowski(){
+                yCube(szx=depth, szy=4, szz=height);
+                yCyl(rb=1,rt=1, px=depth/2, py=-4/2, ry=90);
+            }//minkowski                    
+    }//transform
+}//module

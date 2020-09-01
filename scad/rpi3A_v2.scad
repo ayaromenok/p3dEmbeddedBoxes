@@ -3,8 +3,9 @@ include <./boxParts_v2.scad>
 
 //include <./components.scad>
 g_isProduction = true; //true to avoid displaying test components
-rpi3ABot(0,-40);
-rpi3ATop(0,40,22,180);
+//rpi3ABot(0,-40);
+//rpi3ATop(0,40,22,180);
+rpi3A();
 
 module rpi3ABot(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isExtHolders = false, thickness=3){
     translate([px, py, pz])
@@ -12,7 +13,7 @@ module rpi3ABot(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isExtHolders = fa
     difference(){
             rpi3A();
             yCube(75,66,(22+thickness*2+0.4*2),0,0,33.6);
-            cutSectionBot(-1.5,-(56/2+thickness/2+0.7),6,           length=58, width=thickness, height=13);
+            cutSectionBot(-1.,-(56/2+thickness/2+0.7),6,            length=58, width=thickness, height=13);
             cutSectionBot(0,(56/2+thickness/2+0.7),6,               length=58, width=thickness, height=13);
             cutSectionBot((65/2+thickness/2+0.4),(-56/2+31.45),6,   0,0,90,length=30, width=thickness, height=13);
             cutSectionBot(-(65/2+thickness/2+0.4),0,6,              0,0,90,length=30, width=thickness, height=13);
@@ -25,7 +26,7 @@ module rpi3ATop(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isExtHolders = fa
     rotate([rx,ry,rz]){
         difference(){            
             rpi3A();
-            cutSectionTop(-1.5,-(56/2+thickness/2+0.7),6,           length=58, width=thickness, height=13);
+            cutSectionTop(-1,-(56/2+thickness/2+0.7),6,             length=58, width=thickness, height=13);
             cutSectionTop(0,(56/2+thickness/2+0.7),6,               length=58, width=thickness, height=13);
             cutSectionTop((65/2+thickness/2+0.4),(-56/2+31.45),6,   0,0,90,length=30, width=thickness, height=13);
             cutSectionTop(-(65/2+thickness/2+0.4),0,6,              0,0,90, length=30, width=thickness, height=13);
@@ -60,28 +61,30 @@ module rpi3A(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isExtHolders = false
                 yCyl(_r,1, _l_2,_w_2);
             }//mink 
             //connectors - front
-            powerUSBC_v2((-_l_2+10.6),-56/2,3,0,0,-90);
-            displayHDMI_v2((-_l_2+32),-56/2,3.5,0,0,-90);
-            audio3_5mm_v2((_l_2-11.5),-56/2,3.5,0,0,-90);
+            powerUSBC_v2((-_l_2+9.3),(-56/2-_shift),3,      0,0,-90);
+            displayHDMI_v2((-_l_2+30.5),(-56/2-_shift),3.5, 0,0,-90);
+            audio3_5mm_v2((_l_2-9.5),(-56/2-_shift),3.5,    0,0,-90);
         
             //connectors - right
-            usbUSBASingle_v2((65/2),(-56/2+31.45),3);
+            usbUSBASingle_v2((65/2+0.2),(-56/2+31.45),3);
             
             //connectors - left
-            sdCard_v2(-(65/2),0,(-3+3),0,0,180);
+            sdCard_v2(-(65/2),0,(-3+3),     0,0,180);
+            sdCard_v2(-(65/2),0,-3,         0,0,180);//extend to bottom
             
             //connectors - back            
-            rpi40PinHeader_v2(0,(49/2+_t+3+_shift),5);
+            rpi40PinHeader_v2(0,(49/2+_t+3+_shift),6);
+            rpi40PinHeader_v2(0,(49/2+_t+3+_shift),16);
             
             //connectors - top            
-            rpi40PinHeader_v2(0,(49/2),_h-_shift);
+            rpi40PinHeader_v2(0,(49/2+1),_h-_shift);
             cameraBasement_v2(58/2,(-56/2+11.5),_h);
             cameraBasement_v2(-58/2,(-56/2+11.5),_h);
             cameraFFC_v2((-65/2+45),(-56/2+11.5),_h);
                 // display in fact
             cameraFFC_v2((-65/2+4.5),0,_h);
                 //heater output
-            yCube(58/2,49/2,_h,-15,10,_h);    
+            yCube(58/2,48/2,_h,-15,8,_h);    
             
             //connectors - bottom
             basementRPiCut_v2(0,0,-thickness);
