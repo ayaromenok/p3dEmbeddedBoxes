@@ -29,19 +29,29 @@ module rpi3A(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isTop=true, isExtHol
                 yCube(_l,_w,_h-1);
                 yCyl(_r,1, _l_2,_w_2);
             }//mink 
-            //connectors
+            //connectors - front
             powerUSBC_v2((-_l_2+10.6),-56/2,3,0,0,-90);
             displayHDMI_v2((-_l_2+32),-56/2,3.5,0,0,-90);
             audio3_5mm_v2((_l_2-11.5),-56/2,3.5,0,0,-90);
         
+            //connectors - right
             usbUSBASingle_v2((65/2),(-56/2+31.45),3);
-        
+            //connectors - left
             sdCard_v2(-(65/2),0,(-3+3),0,0,180);
-            
+            //connectors - back            
+            rpi40PinHeader_v2(0,(49/2+_t+3+_shift),5);
+            //connectors - top            
+            rpi40PinHeader_v2(0,(49/2),_h-_shift);
+            camerasBasement_v2(58/2,(-56/2+11.5),_h);
+            camerasBasement_v2(-58/2,(-56/2+11.5),_h);
+            //heater otput
+            yCube(58/2,49/2,_h,-15,10,_h);    
             //dev
-            yCube(_l,_w,_h,0,0,_h);    
+            //yCube(_l,_w,_h,0,0,_h);    
         }//diff
         basementRPi_v2();        
+        
+        
         
     }//translate    
 }//module
