@@ -129,12 +129,12 @@ module cutSectionTop(px=0, py=0, pz=0, rx=0, ry=0, rz=0, length=10, width=2, hei
     translate([px, py, pz+sht*2])
     rotate([rx,ry,rz]){
         difference(){
-            yCube(length*coefLenght, width*coefWidth, (height-sht), pz=(height-sht)/2);
+            yCube(length*coefLenght, width*coefWidth, (height-sht), pz=(height-sht*2)/2);
             
-            union(){
-                yPoly(p=[[l_2-sht,0],[(l_2-w_2),w_2-sht],[-(l_2-w_2),w_2-sht],[-l_2+sht,0],[-(l_2-w_2),-w_2+sht],[(l_2-w_2),-w_2+sht]],szz=height-sht);
-                ySphere(w_2-sht,l_2-w_4,0,h_2);
-                ySphere(w_2-sht,-l_2+w_4,0,h_2);
+            union(){                
+                yPoly(p=[[l_2-sht,0],[(l_2-w_2),w_2-sht],[-(l_2-w_2),w_2-sht],[-l_2+sht,0],[-(l_2-w_2),-w_2+sht],[(l_2-w_2),-w_2+sht]],szz=height-sht);                
+                ySphere(w_2-sht,l_2-w_2,0,h_2);
+                ySphere(w_2-sht,-l_2+w_2,0,h_2);
             }//union            
             yCube((l_2-w_2)*2,width*3,height-sht, pz=(height-sht)/2);
         }//diff

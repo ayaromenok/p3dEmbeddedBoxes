@@ -14,7 +14,7 @@ module rpi3ABot(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isExtHolders = fa
             rpi3A();
             yCube(75,66,(22+thickness*2+0.4*2),0,0,33.6);
             cutSectionBot(-1.,-(56/2+thickness/2+0.7),6,            length=58, width=thickness, height=13);
-            cutSectionBot(0,(56/2+thickness/2+0.7),6,               length=58, width=thickness, height=13);
+            //cutSectionBot(0,(56/2+thickness/2+0.7),6,               length=58, width=thickness, height=13);
             cutSectionBot((65/2+thickness/2+0.4),(-56/2+31.45),6,   0,0,90,length=30, width=thickness, height=13);
             cutSectionBot(-(65/2+thickness/2+0.4),0,6,              0,0,90,length=30, width=thickness, height=13);
         }//diff        
@@ -26,10 +26,10 @@ module rpi3ATop(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isExtHolders = fa
     rotate([rx,ry,rz]){
         difference(){            
             rpi3A();
-            cutSectionTop(-1,-(56/2+thickness/2+0.7),6,             length=58, width=thickness, height=13);
-            cutSectionTop(0,(56/2+thickness/2+0.7),6,               length=58, width=thickness, height=13);
-            cutSectionTop((65/2+thickness/2+0.4),(-56/2+31.45),6,   0,0,90,length=30, width=thickness, height=13);
-            cutSectionTop(-(65/2+thickness/2+0.4),0,6,              0,0,90, length=30, width=thickness, height=13);
+            cutSectionTop(-1,-(56/2+thickness/2+0.7),5.99,             length=58, width=thickness, height=13, sht=0.3);
+            cutSectionTop(0,(56/2+thickness/2+0.7),5.99,               length=38, width=thickness, height=13, sht=0.3);
+            cutSectionTop((65/2+thickness/2+0.4),(-56/2+31.45),5.99,   0,0,90,length=30, width=thickness, height=13, sht=0.3);
+            cutSectionTop(-(65/2+thickness/2+0.4),0,5.99,              0,0,90, length=30, width=thickness, height=13, sht=0.3);
             yCube(95,86,(22+thickness*2+0.4*2),0,0,-7.95);
         }//diff        
     }//translate
@@ -60,21 +60,25 @@ module rpi3A(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isExtHolders = false
                 yCube(_l,_w,_h-1);
                 yCyl(_r,1, _l_2,_w_2);
             }//mink 
+            
             //connectors - front
             powerUSBC_v2((-_l_2+9.3),(-56/2-_shift),3,      0,0,-90);
             displayHDMI_v2((-_l_2+30.5),(-56/2-_shift),3.5, 0,0,-90);
             audio3_5mm_v2((_l_2-9.5),(-56/2-_shift),3.5,    0,0,-90);
         
             //connectors - right
-            usbUSBASingle_v2((65/2+0.2),(-56/2+31.45),3);
-            heatHoleV((65/2),22,(3),     0,0,0);
+            usbUSBASingle_v2((65/2+0.2),(-56/2+31.45),3);            
             heatHoleV((65/2),-22,(3),     0,0,0);
+            
             //connectors - left
             sdCard_v2(-(65/2),0,(-3+3),     0,0,180);
             sdCard_v2(-(65/2),0,-3,         0,0,180);//extend to bottom
             
-            heatHoleV(-(65/2),22,(3),     0,0,180);
-            heatHoleV(-(65/2),-22,(3),     0,0,180);
+            heatHoleV(-(65/2),22,(3),       0,0,180);
+            heatHoleV(-(65/2),5,(10),     0,0,180);
+            heatHoleV(-(65/2),-5,(10),     0,0,180);
+            heatHoleV(-(65/2),-22,(3),      0,0,180);
+            
             //connectors - back            
             rpi40PinHeader_v2(0,(49/2+_t+3+_shift),6);
             rpi40PinHeader_v2(0,(49/2+_t+3+_shift),16);
@@ -87,8 +91,8 @@ module rpi3A(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isExtHolders = false
                 // display in fact
             cameraFFC_v2((-65/2+4.5),0,_h);
                 //heater output
-            yCube(58/2,48/2,_h,-15,8,_h);    
-            fan40mmHoles(-14,8,_h);
+            yCube(58/2,20,_h, -4,6,_h);    
+            fan40mmHoles(-11,9,_h-_shift);
             
             //connectors - bottom
             basementRPiCut_v2(0,0,-thickness);
@@ -113,7 +117,7 @@ module rpi3A(px=0, py=0, pz=0, rx=0, ry=0, rz=0, height=22, isExtHolders = false
 
 
 
-
+/*
 rpiLength   = 65;
 rpiWidth    = 58;
 rpiHeight   = 22;
@@ -267,3 +271,4 @@ module cutSectionTop(px=0, py=0, pz=0, rx=0, ry=0, rz=0, length=10, width=2, hei
     }//transform
 }//module
 
+*/
