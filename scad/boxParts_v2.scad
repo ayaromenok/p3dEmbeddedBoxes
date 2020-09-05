@@ -143,8 +143,11 @@ module cutSectionTop(px=0, py=0, pz=0, rx=0, ry=0, rz=0, length=10, width=2, hei
 }//module
 
 //support for board
-module boxHolderRPiAWider_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=3){
-    _shiftH=(65+thickness*2+3*2)/2;
+module boxHolderRPiAWider_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=3, isModelA=true){
+    
+    _shiftH= ((isModelA?65:85)+thickness*2+3*2)/2;
+    
+    
     translate([(px),(py),pz])
     rotate([rx,ry,rz]){
         translate([0,0,1]){
@@ -166,7 +169,8 @@ module boxHolderRPiAWider_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=3){
             }//dif
         }//translate
     }//transform
-}//module boxHolderRPiWider_v2
+}//module boxHolderRPiAWider_v2
+
 
 // not ported - need to evaluate
 module boxConnectorM3_v2(px=0, py=0, pz=0, rx=0, ry=0, rz=0){
