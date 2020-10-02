@@ -2,9 +2,11 @@ include <../lib/lib.scad>
 include <./components.scad>
 
 
-//armCamHolder_MCAM400_x2(ry=90, stereoBase=64);
-armCamHolder_ws_IMX219_Stereo();
-module armCamHolder_ws_IMX219_Stereo(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=6, length=20, mX=4){
+camStereoHolder_ws_IMX219_Stereo(ry=90);                      //https://www.waveshare.com/wiki/IMX219-83_Stereo_Camera
+//camStereoHolder_MCAM400_x2(ry=90, stereoBase=64);            //http://wiki.friendlyarm.com/wiki/index.php/Matrix_-_MCAM400
+
+
+module camStereoHolder_ws_IMX219_Stereo(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=6, length=20, mX=4){
     _tk=thickness;
     _tk_2=thickness/2;
     _tk_x2=thickness*2;
@@ -51,7 +53,7 @@ module armCamHolder_ws_IMX219_Stereo(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickne
     }//transform
 }//module
 
-module armCamHolder_MCAM400_x2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=6, length=20, mX=4, stereoBase=64){
+module camStereoHolder_MCAM400_x2(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=6, length=20, mX=4, stereoBase=64){
     _tk=thickness;
     _tk_2=thickness/2;
     _tk_x2=thickness*2;
