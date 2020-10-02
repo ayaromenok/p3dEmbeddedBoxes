@@ -12,16 +12,17 @@ module rpi3BBot(px=0, py=0, pz=0, rx=0, ry=0, rz=0, heightBot=22, isExtHolders =
     translate([px, py, pz])
     rotate([rx,ry,rz]){
     difference(){
-            rpi3B(height=heightBot);        
-        
-            yCube(95,66,(22+thickness*2+0.4*2), 10,0,32.6);
+            rpi3B(height=heightBot);               
+            
             cutSectionBot(-1.,-(56/2+thickness/2+0.7),6,            length=58, width=thickness, height=13);
-            cutSectionBot(0,(56/2+thickness/2+0.7),6,               length=62, width=thickness, height=13);
+            cutSectionBot(41,(56/2+thickness/2+0.7),6,               length=12, width=thickness, height=13);
             //cutSectionBot((65/2+thickness/2+0.4),(-56/2+31.45),6,   0,0,90,length=30, width=thickness, height=13);
             cutSectionBot(-(65/2+thickness/2+0.4),0,6,              0,0,90,length=30, width=thickness, height=13);
+            //cut top
+            yCube(95,66,(22+thickness*2+0.4*2), 10,0,32.6);            
+            yCube(10,40,20,(85/2+thickness/2+0.4+10),(-56/2+31.45),12.51);    
         
             //yCube(100,70,21,10,0,16);   for lower version
-            yCube(10,40,20,(85/2+thickness/2+0.4+10),(-56/2+31.45),12.51);    
         }//diff     
      
     }//translate
@@ -33,12 +34,15 @@ module rpi3BTop(px=0, py=0, pz=0, rx=0, ry=0, rz=0, heightTop=22, isExtHolders =
         difference(){            
             rpi3B(height=heightTop);
             cutSectionTop(-1,-(56/2+thickness/2+0.7),5.99,             length=58, width=thickness, height=12, sht=0.3);
-            cutSectionTop(0,(56/2+thickness/2+0.7),5.99,               length=62, width=thickness, height=12, sht=0.3);
-            //cutSectionTop((85/2+thickness/2+0.4+10),(-56/2+31.45),5.99,   0,0,90,length=30, width=thickness, height=12, sht=0.3); 
-            yCube(10,100,12,(85/2+thickness/2+0.4+10),(-56/2+31.45),12.01);        
+            cutSectionTop(41,(56/2+thickness/2+0.7),5.99,               length=12, width=thickness, height=12, sht=0.3);            
             cutSectionTop(-(65/2+thickness/2+0.4),0,5.99,              0,0,90, length=30, width=thickness, height=12, sht=0.3);
+            //cut bottom
             yCube(115,86,(22+thickness*2+0.4*2),     10,0,-7.95);
+            
+            //additional small cuts
+            yCube(10,100,12,(85/2+thickness/2+0.4+10),(-56/2+31.45),12.01);                    
             yCube(10,20,12,(85/2+thickness/2+0.4+10),(10),14.51);    
+            yCube(20,10,20, -31,(56/2+thickness/2+0.7),8.15);
         }//diff        
         
     }//translate
