@@ -3,7 +3,7 @@ include <./components.scad>
 
 
 //camManipulatorBasement();
-armSideSegment(px=0, length=30, sideShift=30,rx=90);
+armSideSegment(px=0, length=30, sideShift=10,rx=90);
 //armSegment(px=0, length=30, rx=90);
 
 //armCamHolder(ry=90);
