@@ -3,11 +3,48 @@ include <./components.scad>
 
 
 //camManipulatorBasement();
-armSegment(px=0, length=30, rx=90);
+armSideSegment(px=0, length=30, sideShift=30,rx=90);
+//armSegment(px=0, length=30, rx=90);
 
 //armCamHolder(ry=90);
 //armCamHolder_x2(ry=90, stereoBase=64);
 //camShim();
+
+
+module armSideSegment(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=6, length=30, mX=4, sideShift=20){
+    _tk=thickness;
+    _tk_2=thickness/2;
+    _tk_x2=thickness*2;
+    _shift=0.4;
+    _r = mX/2+_shift;
+    translate([px, py, pz])
+    rotate([rx,ry,rz]){
+        difference(){
+            union(){
+                //bot
+                yCyl(_tk,_tk,       0,0,sideShift); 
+                yCube(_tk,_tk*2,_tk,  _tk_2,0,sideShift);
+                yCube(_tk,_tk*2,sideShift,  _tk+_tk_2,0,sideShift/2+_tk_2);
+                //top
+                yCyl(_tk,_tk_2,   length,0,_tk*3/4+_shift);
+                yCyl(_tk,_tk_2,   length,0,-_tk*3/4-_shift);
+                //center
+                yPoly(p=[[_tk,0],[length-_tk_x2,0],[length-_tk,_tk_2+_shift],[length,_tk_2+_shift],[length,_tk+_shift],[length-_tk,_tk+_shift],[length-_tk_x2,_tk_2],[_tk,_tk_2]],
+                    szz=_tk_x2, py=_tk, rx=90);        
+                yPoly(p=[[_tk,0],[length-_tk_x2,0],[length-_tk,_tk_2+_shift],[length,_tk_2+_shift],[length,_tk+_shift],[length-_tk,_tk+_shift],[length-_tk_x2,_tk_2],[_tk,_tk_2]], 
+                    szz=_tk_x2, py=-_tk, rx=-90);                
+            }//union
+            
+            yCyl(_r,_tk_x2,     0,0, sideShift);
+            
+            yCyl(_r,_tk_x2,   length,0,_tk+_shift);
+            yCyl(_r,_tk_x2,   length,0,-_tk-_shift);            
+            
+        }//difference        
+        
+    }//transform
+}//module 
+
 
 module camShim(px=0, py=0, pz=0, rx=0, ry=0, rz=0, thickness=6){
     thickness_2=thickness/2;
